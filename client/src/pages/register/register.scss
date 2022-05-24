@@ -1,0 +1,181 @@
+.register {
+    background-image: linear-gradient(to right bottom, rgba(0,0,0,0.445), rgba(0,0,0,0.300)), url(../../../public/assets/img/backgroundlogintwo.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-width: 100%;
+    min-height: 100%;
+
+    /* HEADER */
+    .logo {
+        width: 165px;
+        position: relative;
+        top: 25px;
+        left: 30px;
+        z-index: 100;
+    }
+
+    .register-container {
+        max-width: 800px;
+        width: 85%;
+        margin: auto;
+        margin-top: 5vh;
+        padding: 40px;
+        border-radius: 4px;
+        background-color: rgba(0,0,0, 0.7);
+        color: white;
+    
+        .top {
+            margin: 0 0 25px;
+            height: 41px;
+            font-size: 22px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+    
+            img { 
+                height: 41px;
+                width: 41px;
+            }
+        }
+    
+        form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+    
+            button {
+                grid-column: span 2;
+                height: 45px;
+                line-height: 45px;
+                margin: auto;
+                width: 30%;
+                background: linear-gradient(to left,#FFBF00,#FF003C);
+                color: white;
+                font-weight: bold;
+                border: none;
+                border-radius: 3px;
+                cursor: pointer;
+                transition: .1s ease all;
+                
+                &:hover {
+                    box-shadow: 3px 0px 30px rgba(163,163,163, 1);
+                }
+            }
+            input[type=checkbox]{
+                grid-column: span 2;
+                width: 30px;
+                height: 18px;
+            }
+        }
+
+        /* FOOTER REGISTER */
+        .footer-register-container {
+            margin-top: 30px;
+
+            .new {
+                margin-top: 12px;
+                font-size: 17px;
+                color: #727272;
+                font-weight: lighter;
+                a {
+                    color: white;
+                    text-decoration: none;
+                    margin-left: 5px;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+
+            .protect {
+                margin-top: 12px;
+                font-size: 13px;
+                color: #9b9b9b;
+
+                a {
+                    text-decoration: none;
+                    color: #5656ff;
+                }
+            }
+        }
+    }
+
+    /* FOOTER */
+    footer {
+        margin: auto;
+        margin-top: 14vh;
+        padding: 25px 40px 35px;
+        background-color: rgba(0,0,0, 0.7);
+        a {
+            &:hover {
+            text-decoration: underline;
+            }
+        }
+        .footer-info {
+            max-width: 1000px;
+            margin: auto;
+            p {
+                color: gray;
+                a {
+                    color: inherit;
+                    text-decoration: none;
+                }
+            }
+            .footer-links {
+                margin: 20px 0;
+                display: flex;
+                flex-wrap: wrap;
+                list-style: none;
+
+                .footer-link_item {
+                    width: 250px;
+                    min-width: 200px;
+                    a {
+                        color: gray;
+                        font-size: 13px;
+                        margin-bottom: 10px;
+                        text-decoration: none;
+                    }
+                }
+            }
+            .footer-info select {
+                background-color: black;
+                border: 1px solid rgba(128,128,128,0.446);
+                color: gray;
+                outline: none;
+                padding: 13px;
+            }
+        }
+    }
+}
+
+
+@media (max-width: 800px) {
+    .register {
+        background: #000;
+        .logo {
+            max-width: 180px;
+        }
+        .register-container {
+            background: transparent;
+            width: 100%;
+            padding: 0;
+            border-bottom: 1px solid gray;
+            form {
+                grid-template-columns: 1fr;
+                input[type=checkbox],
+                button {
+                grid-column: 1;
+                }
+                button {
+                    width: 100%;
+                }
+            }
+        }   
+        footer {
+            margin: auto;
+        }
+    }
+}
