@@ -1,40 +1,60 @@
 import { Add, PlayArrow, ThumbDownAltOutlined, ThumbUpAltOutlined } from "@mui/icons-material"
-import { useState } from "react"
+import axios from "axios";
+import { useEffect, useState } from "react"
 import "./listItem.scss"
 
-export default function ListItem({index}) {
+export default function ListItem({index,item}) {
   const [isHovered, setIsHovered] = useState(false);
-  const trailer = "/assets/video/loki_trailer.mp4";
+  const [movie, setMovie] = useState({})
+
+  useEffect(()=>{
+    const getMovie = async () => {
+      try {
+        const res = await axios.get("/movies/find" + item, {
+          headers: {
+            token: "Bearer"
+          },
+        });
+        setMovie(res.data);
+      } catch(err){
+        console.log(err)
+      }
+    };
+    getMovie()
+  },[item]);
+
 
   return (
-    <div className="listItem" 
-    style={{ left: isHovered && index * 225 - 50 + index * 2.5 }} 
-    onMouseEnter={()=>setIsHovered(true)} 
-    onMouseLeave={()=>setIsHovered(false)}
-    >
-      <img src="/assets/img/series/naruto.jpg" alt="" />
-      {isHovered && (
-        <>
-          <video src={trailer} autoPlay={true} muted loop></video>
-          <div className="itemInfo">
-            <div className="icons">
-              <PlayArrow className="icon"/>
-              <Add className="icon"/>
-              <ThumbUpAltOutlined className="icon"/>
-              <ThumbDownAltOutlined className="icon"/>
+    <Link>
+      <div className="listItem" 
+      style={{ left: isHovered && index * 225 - 50 + index * 2.5 }} 
+      onMouseEnter={()=>setIsHovered(true)} 
+      onMouseLeave={()=>setIsHovered(false)}
+      >
+        <img src={movie.img} alt="" />
+        {isHovered && (
+          <>
+            <video src={movie.trailer} autoPlay={true} muted loop></video>
+            <div className="itemInfo">
+              <div className="icons">
+                <PlayArrow className="icon"/>
+                <Add className="icon"/>
+                <ThumbUpAltOutlined className="icon"/>
+                <ThumbDownAltOutlined className="icon"/>
+              </div>
+              <div className="itemInfoTop">
+                <span>{movie.duration}</span>
+                <span className="limit">{movie.limit}</span>
+                <span>{movie.img}year</span>
+              </div>
+              <div className="desc">
+                {movie.desc}
+              </div>
+              <div className="genre">{movie.genre}</div>
             </div>
-            <div className="itemInfoTop">
-              <span>1 hora 14 minutos</span>
-              <span className="limit">+16</span>
-              <span>1999</span>
-            </div>
-            <div className="desc">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati officia totam dignissimos a consectetur commodi
-            </div>
-            <div className="genre">Acción</div>
-          </div>
-        </>
-      )}
-    </div>
+          </>
+        )}
+      </div>
+    </Link>
   );
 }

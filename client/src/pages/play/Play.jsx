@@ -3,7 +3,7 @@ import "./play.scss"
 
 export default function play() {
     return (
-        <div className='play'>
+        <div className='play-component'>
             <div className='back'>
                 <ArrowBackOutlined/>
                 Inicio

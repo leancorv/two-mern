@@ -7,7 +7,7 @@ export default function Featured({ type }) {
             {type && (
                 <div className="category">
                     <img src="/assets/img/logo/t.png" alt="" />
-                    <span>{type === "pelicula" ? "Peliculas" : "Series"}</span>
+                    <span>{type === "peliculas" ? "Peliculas" : "Series"}</span>
                     <select name="genre" id="genre">
                         <option>Género</option>
                         <option value="aventura">Aventura</option>
