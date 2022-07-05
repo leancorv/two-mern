@@ -1,14 +1,19 @@
 import { ArrowBackOutlined } from '@mui/icons-material';
 import "./play.scss"
+import { Link, useLocation } from "react-router-dom";
 
-export default function play() {
+export default function Play() {
+    const location = useLocation();
+    const movie = location.movie
     return (
         <div className='play-component'>
-            <div className='back'>
-                <ArrowBackOutlined/>
-                Inicio
-            </div>
-            <video className='video' autoPlay progress controls src="/assets/video/loki_trailer.mp4"></video>
+            <Link to="/">
+                <div className='back'>
+                    <ArrowBackOutlined/>
+                    Inicio
+                </div>
+            </Link>
+            <video className='video' autoPlay progress controls src={movie.video}></video>
         </div>
     )
 }

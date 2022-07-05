@@ -2,6 +2,7 @@ import { Add, PlayArrow, ThumbDownAltOutlined, ThumbUpAltOutlined } from "@mui/i
 import axios from "axios";
 import { useEffect, useState } from "react"
 import "./listItem.scss"
+import { Link } from "react-router-dom";
 
 export default function ListItem({index,item}) {
   const [isHovered, setIsHovered] = useState(false);
@@ -25,7 +26,7 @@ export default function ListItem({index,item}) {
 
 
   return (
-    <Link>
+    <Link to={{pathname:"/play", movie: movie}}>
       <div className="listItem" 
       style={{ left: isHovered && index * 225 - 50 + index * 2.5 }} 
       onMouseEnter={()=>setIsHovered(true)} 
