@@ -1,7 +1,29 @@
 import { InfoOutlined, PlayArrow } from "@mui/icons-material"
+import axios from "axios";
+import { useEffect, useState } from "react"
 import "./featured.scss"
 
 export default function Featured({ type }) {
+    const [content, setContent] = useState({});
+
+    useEffect(()=> {
+        const getRandomContent = async () => {
+            try {
+                const res = await axios.get(`/movies/random?type=${type}`,{
+                    headers: {
+                        token: "Bearer"
+                      },
+                });
+                setContent(res.data[0]);
+            } catch(err) {
+                console.log(err)
+            }
+        }
+        getRandomContent();
+    },[type]);
+
+    console.log(content)
+
   return (
         <div className="featured">
             {type && (
@@ -27,11 +49,11 @@ export default function Featured({ type }) {
                     <img src="/assets/img/logo/t-complemento.png" alt="" />
                 </div>
             )}
-            <img src="/assets/img/series/loki.jpg" alt="" />
+            <img src={content.img} alt="" />
             <div className="info">
                 <img src="/assets/img/logo/logo-two-final.png" alt="" />
                 <span className="desc">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto ratione fuga ullam sunt, quis tenetur reprehenderit dolores voluptas cupiditate, quas dolorem totam architecto sapiente voluptatum deserunt veritatis! Facere, laudantium maiores.
+                    {content.desc}
                 </span>
                 <div className="buttons">
                     <button className="play">
