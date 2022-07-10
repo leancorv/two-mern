@@ -1,19 +1,37 @@
+import Sidebar from "../../components/sidebar/Sidebar";
+import Navbar from "../../components/navbar/Navbar";
+import "./home.scss";
+import Widget from "../../components/widget/Widget";
+import Featured from "../../components/featured/Featured";
 import Chart from "../../components/chart/Chart";
-import FeaturedInfo from "../../components/featuredInfo/FeaturedInfo";
-import "./home.css";
-import { userData } from "../../dummyData";
-import WidgetSm from "../../components/widgetSm/WidgetSm";
-import WidgetLg from "../../components/widgetLg/WidgetLg";
+import Table from "../../components/table/Table";
 
-export default function Home() {
+
+const Home = () => {
+
+
   return (
     <div className="home">
-      <FeaturedInfo />
-      <Chart data={userData} title="User Analytics" grid dataKey="Active User"/>
-      <div className="homeWidgets">
-        <WidgetSm/>
-        <WidgetLg/>
+      <Sidebar />
+      <div className="homeContainer">
+        <Navbar />
+        <div className="widgets">
+          <Widget type="user" />
+          <Widget type="order" />
+          <Widget type="earning" />
+          <Widget type="balance" />
+        </div>
+        <div className="charts">
+          <Featured />
+          <Chart title="User Analytics" aspect={2 / 1} />
+        </div>
+        <div className="listContainer">
+          <div className="listTitle">Latest Transactions</div>
+          <Table />
+        </div>
       </div>
     </div>
   );
-}
+};
+
+export default Home;

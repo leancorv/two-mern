@@ -1,103 +1,103 @@
-import "./sidebar.css";
-import {
-  LineStyle,
-  Timeline,
-  TrendingUp,
-  PermIdentity,
-  Storefront,
-  AttachMoney,
-  BarChart,
-  MailOutline,
-  DynamicFeed,
-  ChatBubbleOutline,
-  WorkOutline,
-  Report,
-} from "@material-ui/icons";
+import "./sidebar.scss";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
+import LocalShippingIcon from "@mui/icons-material/LocalShipping";
+import CreditCardIcon from "@mui/icons-material/CreditCard";
+import PlayCircleOutline  from "@mui/icons-material/PlayCircleOutline";
+import InsertChartIcon from "@mui/icons-material/InsertChart";
+import SettingsApplicationsIcon from "@mui/icons-material/SettingsApplications";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
+import SettingsSystemDaydreamOutlinedIcon from "@mui/icons-material/SettingsSystemDaydreamOutlined";
+import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { Link } from "react-router-dom";
+import { DarkModeContext } from "../../context/darkModeContext";
+import { useContext } from "react";
 
-export default function Sidebar() {
+const Sidebar = () => {
+  const { dispatch } = useContext(DarkModeContext);
   return (
     <div className="sidebar">
-      <div className="sidebarWrapper">
-        <div className="sidebarMenu">
-          <h3 className="sidebarTitle">Dashboard</h3>
-          <ul className="sidebarList">
-            <Link to="/" className="link">
-            <li className="sidebarListItem active">
-              <LineStyle className="sidebarIcon" />
-              Home
+      <div className="top">
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <span className="logo">lecovadmin</span>
+        </Link>
+      </div>
+      <hr />
+      <div className="center">
+        <ul>
+          <p className="title">MAIN</p>
+          <li>
+            <DashboardIcon className="icon" />
+            <span>Dashboard</span>
+          </li>
+          <p className="title">LISTS</p>
+          <Link to="/users" style={{ textDecoration: "none" }}>
+            <li>
+              <PersonOutlineIcon className="icon" />
+              <span>Users</span>
             </li>
-            </Link>
-            <li className="sidebarListItem">
-              <Timeline className="sidebarIcon" />
-              Analytics
+          </Link>
+          <Link to="/movies" style={{ textDecoration: "none" }}>
+            <li>
+              <PlayCircleOutline className="icon" />
+              <span>Movies</span>
             </li>
-            <li className="sidebarListItem">
-              <TrendingUp className="sidebarIcon" />
-              Sales
-            </li>
-          </ul>
-        </div>
-        <div className="sidebarMenu">
-          <h3 className="sidebarTitle">Quick Menu</h3>
-          <ul className="sidebarList">
-            <Link to="/users" className="link">
-              <li className="sidebarListItem">
-                <PermIdentity className="sidebarIcon" />
-                Users
-              </li>
-            </Link>
-            <Link to="/products" className="link">
-              <li className="sidebarListItem">
-                <Storefront className="sidebarIcon" />
-                Products
-              </li>
-            </Link>
-            <li className="sidebarListItem">
-              <AttachMoney className="sidebarIcon" />
-              Transactions
-            </li>
-            <li className="sidebarListItem">
-              <BarChart className="sidebarIcon" />
-              Reports
-            </li>
-          </ul>
-        </div>
-        <div className="sidebarMenu">
-          <h3 className="sidebarTitle">Notifications</h3>
-          <ul className="sidebarList">
-            <li className="sidebarListItem">
-              <MailOutline className="sidebarIcon" />
-              Mail
-            </li>
-            <li className="sidebarListItem">
-              <DynamicFeed className="sidebarIcon" />
-              Feedback
-            </li>
-            <li className="sidebarListItem">
-              <ChatBubbleOutline className="sidebarIcon" />
-              Messages
-            </li>
-          </ul>
-        </div>
-        <div className="sidebarMenu">
-          <h3 className="sidebarTitle">Staff</h3>
-          <ul className="sidebarList">
-            <li className="sidebarListItem">
-              <WorkOutline className="sidebarIcon" />
-              Manage
-            </li>
-            <li className="sidebarListItem">
-              <Timeline className="sidebarIcon" />
-              Analytics
-            </li>
-            <li className="sidebarListItem">
-              <Report className="sidebarIcon" />
-              Reports
-            </li>
-          </ul>
-        </div>
+          </Link>
+          <li>
+            <CreditCardIcon className="icon" />
+            <span>Orders</span>
+          </li>
+          <li>
+            <LocalShippingIcon className="icon" />
+            <span>Delivery</span>
+          </li>
+          <p className="title">USEFUL</p>
+          <li>
+            <InsertChartIcon className="icon" />
+            <span>Stats</span>
+          </li>
+          <li>
+            <NotificationsNoneIcon className="icon" />
+            <span>Notifications</span>
+          </li>
+          <p className="title">SERVICE</p>
+          <li>
+            <SettingsSystemDaydreamOutlinedIcon className="icon" />
+            <span>System Health</span>
+          </li>
+          <li>
+            <PsychologyOutlinedIcon className="icon" />
+            <span>Logs</span>
+          </li>
+          <li>
+            <SettingsApplicationsIcon className="icon" />
+            <span>Settings</span>
+          </li>
+          <p className="title">USER</p>
+          <li>
+            <AccountCircleOutlinedIcon className="icon" />
+            <span>Profile</span>
+          </li>
+          <li>
+            <ExitToAppIcon className="icon" />
+            <span>Logout</span>
+          </li>
+        </ul>
+      </div>
+      <div className="bottom">
+        <div
+          className="colorOption"
+          onClick={() => dispatch({ type: "LIGHT" })}
+        ></div>
+        <div
+          className="colorOption"
+          onClick={() => dispatch({ type: "DARK" })}
+        ></div>
       </div>
     </div>
   );
-}
+};
+
+export default Sidebar;
